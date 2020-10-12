@@ -10,19 +10,22 @@ import Text.ICalendar
 import Network.HTTP.Client
 import Network.HTTP.Client.TLS ( newTlsManager )
 
+import System.Environment
+
 import Config                  ( Config (..) )
 import Processor
 
 main :: IO ()
 main = do
-    Config url outpath matchOn <- decodeFileThrow "config.yaml"
+    [confPath] <- getArgs
 
+    Config{..} <- decodeFileThrow confPath
     manager <- newTlsManager
-    request <- parseRequest url
+    request <- parseRequest confURL
     source <- fmap responseBody $ httpLbs request manager
 
-    let decoded = head $ fst $ fromRight' $ parseICalendar def url source
+    let decoded = head $ fst $ fromRight' $ parseICalendar def confURL source
 
-    let updated = decoded{vcEvents = processEvents matchOn $ vcEvents decoded}
+    let updated = decoded{vcEvents = processEvents confMatchOn $ vcEvents decoded}
 
-    B.writeFile outpath $ printICalendar def updated
+    B.writeFile confOutpath $ printICalendar def updated

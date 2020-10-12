@@ -32,7 +32,7 @@ library
       Paths_ics_updater
   hs-source-dirs:
       src
-  default-extensions: OverloadedStrings
+  default-extensions: OverloadedStrings RecordWildCards
   build-depends:
       aeson
     , base >=4.7 && <5
@@ -54,7 +54,7 @@ executable ics-updater-exe
       Paths_ics_updater
   hs-source-dirs:
       app
-  default-extensions: OverloadedStrings
+  default-extensions: OverloadedStrings RecordWildCards
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
@@ -79,7 +79,7 @@ test-suite ics-updater-test
       Paths_ics_updater
   hs-source-dirs:
       test
-  default-extensions: OverloadedStrings
+  default-extensions: OverloadedStrings RecordWildCards
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
