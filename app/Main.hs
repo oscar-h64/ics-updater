@@ -1,25 +1,28 @@
 module Main where
 
-import Config
-
 import Data.ByteString.Lazy    as B ( writeFile )
 import Data.Default            ( Default (def) )
 import Data.Either.Combinators ( fromRight' )
 import Data.Yaml               ( decodeFileThrow )
 
-import Text.ICalendar          ( parseICalendar, printICalendar )
+import Text.ICalendar
 
 import Network.HTTP.Client
-import Network.HTTP.Client.TLS
+import Network.HTTP.Client.TLS ( newTlsManager )
+
+import Config                  ( Config (..) )
+import Processor
 
 main :: IO ()
 main = do
-    conf <- decodeFileThrow "config.yaml"
+    Config url outpath matchOn <- decodeFileThrow "config.yaml"
 
     manager <- newTlsManager
-    request <- parseRequest $ confURL conf
+    request <- parseRequest url
     source <- fmap responseBody $ httpLbs request manager
 
-    let decoded = fst $ fromRight' $ parseICalendar def (confURL conf) source
+    let decoded = head $ fst $ fromRight' $ parseICalendar def url source
 
-    B.writeFile (confOutpath conf) $ mconcat $ map (printICalendar def) decoded
+    let updated = decoded{vcEvents = processEvents matchOn $ vcEvents decoded}
+
+    B.writeFile outpath $ printICalendar def updated

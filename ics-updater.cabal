@@ -27,6 +27,7 @@ library
   exposed-modules:
       Config
       Lib
+      Processor
   other-modules:
       Paths_ics_updater
   hs-source-dirs:
@@ -36,12 +37,14 @@ library
       aeson
     , base >=4.7 && <5
     , bytestring
+    , containers
     , data-default
     , either
     , http-client
     , http-client-tls
     , iCalendar
     , text
+    , unordered-containers
     , yaml
   default-language: Haskell2010
 
@@ -57,6 +60,7 @@ executable ics-updater-exe
       aeson
     , base >=4.7 && <5
     , bytestring
+    , containers
     , data-default
     , either
     , http-client
@@ -64,6 +68,7 @@ executable ics-updater-exe
     , iCalendar
     , ics-updater
     , text
+    , unordered-containers
     , yaml
   default-language: Haskell2010
 
@@ -80,6 +85,7 @@ test-suite ics-updater-test
       aeson
     , base >=4.7 && <5
     , bytestring
+    , containers
     , data-default
     , either
     , http-client
@@ -87,5 +93,6 @@ test-suite ics-updater-test
     , iCalendar
     , ics-updater
     , text
+    , unordered-containers
     , yaml
   default-language: Haskell2010

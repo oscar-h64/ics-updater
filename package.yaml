@@ -30,6 +30,8 @@ dependencies:
 - data-default
 - http-client-tls
 - http-client
+- containers
+- unordered-containers
 
 default-extensions:
 - OverloadedStrings
