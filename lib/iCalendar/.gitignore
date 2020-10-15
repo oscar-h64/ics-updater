@@ -1,6 +1,0 @@
-*.swp
-*~
-dist/
-shell.nix
-.cabal-sandbox
-cabal.sandbox.config

@@ -11,6 +11,13 @@ packages:
       sha256: f2529a2e1678074ca0340ff60caa986f4e246d7d9abe8186657910c2900364bb
   original:
     hackage: mime-0.4.0.2
+- completed:
+    hackage: iCalendar-0.4.0.5@sha256:2a3dca74955de4d3548e4592201093b59328ca153ad207bad189e73cc04f4be0,1962
+    pantry-tree:
+      size: 783
+      sha256: a89134d547b04ea50e4e004c16771e79be2ebbca045adc480f7ff898320374b4
+  original:
+    hackage: iCalendar-0.4.0.5
 snapshots:
 - completed:
     size: 531674

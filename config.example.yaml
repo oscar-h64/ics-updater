@@ -1,0 +1,13 @@
+# The URL to get the original ICS from
+sourceURL: "https://example.com/calendar.ics"
+
+# The file to output the updated calendar to
+outputPath: test.ics
+
+# The rules to use to delete events
+rules:
+  # Delete the event with exactly this UID
+- uid: 00000000-0000-0000-0000-000000000000
+  # Delete events where the summary or description contains "Example search"
+  # (case-sensitive)
+- search: Example search 
